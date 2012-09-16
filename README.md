@@ -13,7 +13,7 @@ import _thread
 from PsyfrBot import psyfrbot
 
 BOTPRC=psyfrbot.botprocessor(commandSym=".")
-BOTPRC.ignore("Hashbot")
+BOTPRC.ignore("Hashbot") # Replace it with whatever your bot identifies as so it doesn't reply to itself.
 BOTPRC.pluginManager.loadPlugins()
 BOTPRC.loadconfig()
 BOTPRC.loadusers()
