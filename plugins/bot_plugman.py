@@ -1,0 +1,36 @@
+name="BOT_PLUGIN_MANAGER"
+trigger="plugman"
+reqlvl=31337
+##
+##
+
+isMatch=lambda x,y: x.lower()==y.lower()
+
+def plugin_main(message,pBotproc):
+  # "message"  - Message passed that activated this plugin
+  # "pBotproc" - botprocessor class that called this plugin
+  Splitmsg=message.split(" ")[1:]
+  if isMatch(Splitmsg[0],"reload"):
+    pBotproc.pluginManager.reloadPlugins()
+    return "Reloaded plugins."
+  elif isMatch(Splitmsg[0],"list"):
+    if len(Splitmsg)>1:
+      if isMatch(Splitmsg[1],"a") or isMatch(Splitmsg[1],"available"):
+        return "Available Plugins:"+(
+          " ".join(pBotproc.pluginManager.getAvailablePlugins())
+        )
+      elif isMatch(Splitmsg[1],"l") or isMatch(Splitmsg[1],"loaded"):
+        return "Loaded Plugins:"+(
+          " ".join(pBotproc.pluginManager.listPlugins())
+        )
+      else:
+        return "Unknown namespace \"%s\""%Splitmsg[1]
+    else:
+      return "Loaded Plugins:"+(
+        " ".join(pBotproc.pluginManager.listPlugins())
+      )
+      
+    
+  
+  
+  
