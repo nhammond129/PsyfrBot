@@ -7,14 +7,18 @@ Designed to be easily implemented with various protocols, and let extensions
 written working with one protocol be easily transferrable to another.
 For example, with chatango chats using ch.py:
 
+<pre>
 import ch
 import _thread
 from PsyfrBot import psyfrbot
 
 BOTPRC=botprocessor(commandSym=".")
 BOTPRC.pluginManager.loadPlugins()
+# Unless you're doing stuff with the botprocessor's config
+#  dictionary, don't bother with loadin'/saving it.
 BOTPRC.loadusers()
 BOTPRC.adduser("Nullspeaker",lvl=31337)
+
 class botClass(ch.RoomManager):
   def onMessage(self, room, user, message):
     print(user.name+":"+message.body)
@@ -29,3 +33,4 @@ class botClass(ch.RoomManager):
 
 botClass.easy_start()
 BOTPRC.saveusers()
+</pre>
