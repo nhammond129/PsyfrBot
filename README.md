@@ -1,21 +1,11 @@
-PsyfrBot
-========
-
-Modular (plugin-based) bot framework in Python. 
-
-Designed to be easily implemented with various protocols, and let extensions
-written working with one protocol be easily transferrable to another.
-For example, with chatango chats using ch.py:
-
-<pre>
 import ch
 import _thread
 from PsyfrBot import psyfrbot
 
-BOTPRC=botprocessor(commandSym=".")
+BOTPRC=psyfrbot.botprocessor(commandSym=".")
+BOTPRC.ignore("Hashbot") # Replace it with whatever your bot identifies as so it doesn't reply to itself.
 BOTPRC.pluginManager.loadPlugins()
-# Unless you're doing stuff with the botprocessor's config
-#  dictionary, don't bother with loadin'/saving it.
+BOTPRC.loadconfig()
 BOTPRC.loadusers()
 BOTPRC.adduser("Nullspeaker",lvl=31337)
 
@@ -25,12 +15,12 @@ class botClass(ch.RoomManager):
     # I know this is identical to BOTPRC.reply, but I'm nervous about
     #  having multiple rooms. 
     _thread.start_new_thread(
-        room.message,(self.get_response(message.body,user.name),)
+        room.message,(BOTPRC.get_response(message.body,user.name),)
       )
   
   def onFloodWarning(self, room):
     room.reconnect()
 
 botClass.easy_start()
+BOTPRC.saveconfig()
 BOTPRC.saveusers()
-</pre>
