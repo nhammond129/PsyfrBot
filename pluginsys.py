@@ -1,10 +1,13 @@
+from imp import reload
 import os
 import sys
 
 class pluginManager():
   def __init__(self,pluginsdir="plugins"):
     self.plugins={}
-    self._pluginsdir=pluginsdir
+    self._pluginsdir=os.path.dirname(
+        os.path.abspath(__file__)
+      )+os.path.sep+pluginsdir
     
   def getAvailablePlugins(self):
     for filen in os.listdir(self._pluginsdir):

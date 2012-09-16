@@ -1,6 +1,13 @@
 import _thread
 import shelve
+import sys
+import os
+
+# There's a better way to do this, yes?
+osp=sys.path
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 import pluginsys
+sys.path=osp
 
 isMatch=lambda x,y:x.lower()==y.lower()
 
@@ -18,11 +25,16 @@ class botprocessor:
     self._respondFunc=respondFunc
     self.defaultError=defaultError
     self.commandSym=commandSym
+    self._ignore=[]
     self._configloc=configlocation
     self._usersloc=userslocation
     self.pluginManager=pluginsys.pluginManager()
     self.users={}
     self.config={}
+  
+  def ignore(self,name):
+    if name.lower() not in self._ignore:
+      self._ignore.append(name.lower())
   
   def saveconfig(self):
     conffile=shelve.open(self._configloc)
@@ -76,8 +88,12 @@ class botprocessor:
     
   def get_response(self,message,usrname):
     #probably want to override if messageparser is overridden.
+    if not message.startswith(self.commandSym):
+      return None
     SplitMsg=self.messageparser(message)
     self.adduser(usrname)
+    if usrname.lower() in self._ignore and self.getuser(usrname).level!=31337:
+      return None
     for plugin in self.pluginManager.getPlugins():
       if isMatch(self.commandSym+plugin.trigger,SplitMsg[0]):
         if self.getuser(usrname).level>=plugin.reqlvl:

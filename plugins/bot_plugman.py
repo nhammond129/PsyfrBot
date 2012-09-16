@@ -29,6 +29,11 @@ def plugin_main(message,pBotproc):
       return "Loaded Plugins:"+(
         " ".join(pBotproc.pluginManager.listPlugins())
       )
+  elif isMatch(Splitmsg[0],"help"):
+    return """\
+plugman [list,reload]
+  list [(a)vailable/(l)oaded]"""
+  
       
     
   
