@@ -1,3 +1,13 @@
+PsyfrBot
+========
+
+Modular (plugin-based) bot framework in Python. 
+
+Designed to be easily implemented with various protocols, and let extensions
+written working with one protocol be easily transferrable to another.
+For example, with chatango chats using ch.py:
+
+<pre>
 import ch
 import _thread
 from PsyfrBot import psyfrbot
@@ -24,3 +34,4 @@ class botClass(ch.RoomManager):
 botClass.easy_start()
 BOTPRC.saveconfig()
 BOTPRC.saveusers()
+</pre>
