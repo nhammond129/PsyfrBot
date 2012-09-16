@@ -30,9 +30,9 @@ def plugin_main(message,pBotproc):
         " ".join(pBotproc.pluginManager.listPlugins())
       )
   elif isMatch(Splitmsg[0],"help"):
-    return """\
-plugman [list,reload]
-  list [(a)vailable/(l)oaded]"""
+    return "\
+plugman [list,reload]\n\
+  list [(a)vailable/(l)oaded]"
   
       
     
