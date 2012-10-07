@@ -31,8 +31,6 @@ def plugin_main(message,pBotproc):
         return "Rand(0,%d)=%d"%(y,random.randrange(x,y))
     else:
       return "Rand(0,99)=%d"%(y,random.randrange(0,99))
-  elif isMatch(Splitmsg[0],"help"):
-    return ""
   elif isMatch(Splitmsg[0],"eval"):
     try:
       expr="".join(Splitmsg[1:])
