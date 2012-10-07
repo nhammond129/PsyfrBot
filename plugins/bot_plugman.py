@@ -1,6 +1,9 @@
 name="BOT_PLUGIN_MANAGER"
 trigger="plugman"
 reqlvl=31337
+help="""\
+plugman [(l)ist,(r)eload]
+  list [(a)vailable,(l)oaded]"""
 ##
 ##
 
@@ -29,11 +32,6 @@ def plugin_main(message,pBotproc):
       return "Loaded Plugins:"+(
         " ".join(pBotproc.pluginManager.listPlugins())
       )
-  elif isMatch(Splitmsg[0],"help"):
-    return "\
-plugman [list,reload]\n\
-  list [(a)vailable/(l)oaded]"
-  
       
     
   

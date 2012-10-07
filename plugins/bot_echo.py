@@ -1,6 +1,8 @@
 name="BOT_ECHO_PLUGIN"
 trigger="echo"
 reqlvl=0
+help="""\
+echo [message]"""
 ##
 ##
 

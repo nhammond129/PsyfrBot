@@ -120,6 +120,7 @@ if __name__=="__main__":
   BOTPRC.adduser("Nullspeaker",lvl=31337)
   #BOTPRC.saveusers()
   NAME="Nullspeaker"
+  print("Ready.\n  Try starting with '!help'")
   while True:
     x=input("")
-    BOTPRC.reply(x,NAME)
+    print(BOTPRC.get_response(x,NAME))

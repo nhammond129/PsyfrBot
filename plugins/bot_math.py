@@ -1,6 +1,10 @@
 name="BOT_MATH_PLUGIN"
 trigger="math"
 reqlvl=0
+help="""\
+math [rand,eval]
+  rand [arg1] [arg2]
+  eval [expression]"""
 ##
 ##
 import random
@@ -28,10 +32,7 @@ def plugin_main(message,pBotproc):
     else:
       return "Rand(0,99)=%d"%(y,random.randrange(0,99))
   elif isMatch(Splitmsg[0],"help"):
-    return "\
-math [rand,eval]\n\
-  rand [arg1] ([arg2])\n\
-  eval [expression]"
+    return ""
   elif isMatch(Splitmsg[0],"eval"):
     try:
       expr="".join(Splitmsg[1:])
