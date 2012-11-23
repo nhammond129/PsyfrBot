@@ -13,10 +13,12 @@ def plugin_main(message,pBotproc):
   # "message"  - Message passed that activated this plugin
   # "pBotproc" - botprocessor class that called this plugin
   Splitmsg=message.split(" ")[1:]
+  if len(Splitmsg)<1:
+    return help
   if isMatch(Splitmsg[0],"reload"):
     pBotproc.pluginManager.reloadPlugins()
     return "Reloaded plugins."
-  elif isMatch(Splitmsg[0],"list"):
+  elif isMatch(Splitmsg[0],"list") or isMatch(Splitmsg[0],"l"):
     if len(Splitmsg)>1:
       if isMatch(Splitmsg[1],"a") or isMatch(Splitmsg[1],"available"):
         return "Available Plugins:"+(
