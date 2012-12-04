@@ -2,8 +2,10 @@ import _thread
 import shelve
 import sys
 import os
+from datetime import datetime
 
 # There's a better way to do this, yes?
+#  If so, someone please fork and request a pull/open an issue with the fix.
 osp=sys.path
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 import pluginsys
@@ -21,10 +23,12 @@ class botprocessor:
       configlocation="config.cfg",
       userslocation="users.dat",
       defaultError="Exception occurred or no match detected.",
-      respondFunc=None):
+      respondFunc=None,
+      doLogging=True):
     self._respondFunc=respondFunc
     self.defaultError=defaultError
     self.commandSym=commandSym
+    self.doLogging=doLogging
     self._ignore=[]
     self._configloc=configlocation
     self._usersloc=userslocation
@@ -59,6 +63,12 @@ class botprocessor:
     for i in usrfile:
       self.users[i]=usrfile[i]
     usrfile.close()
+    
+  def MsgLog(self,msg):
+    logF=open("logs/"+"LOG_"+datetime.now().strftime("%b-%d-%Y").upper()+".txt","a+")
+    logF.write(datetime.now().strftime("{%H:%M:%S} ")+msg+"\n")
+    logF.flush()
+    logF.close()
   
   def Save(self):
     self.saveconfig()
@@ -88,6 +98,8 @@ class botprocessor:
     
   def get_response(self,message,usrname):
     #probably want to override if messageparser is overridden.
+    if self.doLogging:
+      self.MsgLog("["+usrname+"]: "+message)
     if not message.startswith(self.commandSym):
       return None
     SplitMsg=self.messageparser(message)
