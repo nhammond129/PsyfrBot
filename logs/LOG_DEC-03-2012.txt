@@ -1,0 +1,3 @@
+{21:16:47} [Nullspeaker]: 1/0
+{21:16:48} [Nullspeaker]: math
+{21:16:53} [Nullspeaker]: !math 1/0
