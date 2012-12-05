@@ -10,7 +10,7 @@ math [rand,eval]
 import random
 isMatch=lambda x,y: x.lower()==y.lower()
 
-def plugin_main(message,pBotproc):
+def plugin_main(usrobj,message,pBotproc):
   # "message"  - Message passed that activated this plugin
   # "pBotproc" - botprocessor class that called this plugin
   Splitmsg=message.split(" ")[1:]
@@ -39,3 +39,5 @@ def plugin_main(message,pBotproc):
       return "%s = %d"%(expr,eval(expr))
     except:
       return pBotproc.defaultError
+  else:
+    return help

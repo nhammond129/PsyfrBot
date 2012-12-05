@@ -12,6 +12,8 @@ def plugin_main(message,pBotproc):
   # "message"  - Message passed that activated this plugin
   # "pBotproc" - botprocessor class that called this plugin
   Splitmsg=message.split(" ")[1:]
+  if len(Splitmsg)<1:
+    return help
   if isMatch(Splitmsg[0],"ARG1"):
     pass
   elif isMatch(Splitmsg[0],"ARG2"):

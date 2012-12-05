@@ -1,2 +1,5 @@
 __pycache__
-LOG_*.txt
+logs/LOG_*.txt
+.json
+*.dat
+*.dat.*
