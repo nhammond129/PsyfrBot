@@ -12,6 +12,7 @@ isMatch=lambda x,y: x.lower()==y.lower()
 def plugin_main(usrobj,message,pBotproc):
   # "message"  - Message passed that activated this plugin
   # "pBotproc" - botprocessor class that called this plugin
+  # "usrobj"   - User class that pasted the message calling this plugin
   Splitmsg=message.split(" ")[1:]
   if len(Splitmsg)<1:
     return help
